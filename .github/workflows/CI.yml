@@ -20,8 +20,6 @@ jobs:
           scope: "@kevin-delong"
 
       - name: Install dependencies
-        uses: actions/checkout@v3
-        uses: actions/setup-node@v3
         with:
           version: 6.23.6
           run_install: true
@@ -43,15 +41,15 @@ jobs:
         env:
           CI: true
 
-      - name: Generate Code Coverage
-        # only when running in node v16
-        if: matrix.node == 16
-        uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+      # - name: Generate Code Coverage
+      #   # only when running in node v16
+      #   if: matrix.node == 16
+      #   uses: codecov/codecov-action@v2
+      #   with:
+      #     token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: 'Consume changesets'
-        if: github.event_name == 'push' && github.repository == 'ivandotv/untilted' && matrix.node == 16 && github.ref == 'refs/heads/main'
+        if: github.event_name == 'push' && github.repository == 'kevin-delong/react-package' && github.ref == 'refs/heads/main'
         uses: changesets/action@v1
         id: 'changesets'
         with:
