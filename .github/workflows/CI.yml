@@ -19,10 +19,10 @@ jobs:
           registry-url: https://npm.pkg.github.com/
           scope: "@kevin-delong"
 
-      - name: Install dependencies
-        with:
-          version: 6.23.6
-          run_install: true
+      # - name: Install dependencies
+      #   with:
+      #     version: 6.23.6
+      #     run_install: true
 
       - name: Lint source
         run: |
@@ -48,17 +48,17 @@ jobs:
       #   with:
       #     token: ${{ secrets.CODECOV_TOKEN }}
 
-      - name: 'Consume changesets'
-        if: github.event_name == 'push' && github.repository == 'kevin-delong/react-package' && github.ref == 'refs/heads/main'
-        uses: changesets/action@v1
-        id: 'changesets'
-        with:
-          # This expects you to have a script called release which does a build for your packages and calls changeset publish
-          publish: npm publish
-          commit: version bump
-          title: Next release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: 'Consume changesets'
+      #   if: github.event_name == 'push' && github.repository == 'kevin-delong/react-package' && github.ref == 'refs/heads/main'
+      #   uses: changesets/action@v1
+      #   id: 'changesets'
+      #   with:
+      #     # This expects you to have a script called release which does a build for your packages and calls changeset publish
+      #     publish: npm publish
+      #     commit: version bump
+      #     title: Next release
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # - name: 'Generate docs'
       #   if: steps.changesets.outputs.published == 'true'
