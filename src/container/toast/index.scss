@@ -1,0 +1,39 @@
+.Toastify__toast-container {
+  --toastify-toast-width: 378px;
+}
+
+.Toastify__toast {
+
+  --toastify-color-light: #495057;
+  --toastify-text-color-light: white;
+  --toastify-toast-min-height: 50px;
+
+  border-radius: 5px;
+  box-shadow: 0 0 10px #999;
+  padding: 8px 20px;
+  cursor: pointer;
+
+  .toast-undo-button {
+    float: right;
+    font-weight: 400;
+    color: $primary-light;
+    line-height: 1;
+    font-size: 16px;
+    cursor: pointer;
+    background: none;
+    border: 0;
+    text-transform: uppercase;
+    outline: none;
+  }
+  .Toastify__toast-body {
+
+    cursor: default;
+    .notification-message {
+      text-align: left;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 16px;
+      font-weight: 400;
+    }
+  }
+}

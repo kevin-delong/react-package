@@ -1,0 +1,39 @@
+
+.tab-list {
+  display: flex;
+  background: transparent;
+  list-style-type: none;
+  position: relative;
+  left: 0;
+  margin: 0;
+  padding: 0;
+
+  .tab-list-item {
+    border-radius: 8px 8px 0px 0px;
+    padding: 16px 32px;
+    font-weight: 600;
+
+    cursor: pointer;
+    margin-right: 4px;
+    outline: none;
+    background-color: #dee2e6;
+    transition: 0.3s ease-in-out 0s;
+
+    .tab-icon {
+      margin: 0 14px 0px 0px;
+      display: inline-block;
+    }
+  }
+
+  .tab-item-active {
+    color: #00796B;
+    background-color: white;
+  }
+}
+
+.tab-content {
+  background-color: white;
+  width: 100%;
+  border-radius: 0px 8px 8px 8px;
+  display: block;
+}
