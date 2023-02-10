@@ -1,0 +1,67 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
+  "extends": [
+    "standard",
+    "standard-react",
+    "react-app"
+  ],
+  "globals": {
+    "fetch": true
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "^16.6.3"
+    }
+  },
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "overrides": [{
+    "files": ["*.ts", "*.tsx"],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint"]
+  }],
+  "plugins": [
+    "@babel",
+    "simple-import-sort",
+    "react-hooks"
+  ],
+  "rules": {
+    "comma-dangle": ["error", "always-multiline"],
+    "max-len": ["error", {
+      "comments": 100,
+      "code": 100
+    }],
+    "no-unused-vars": "error",
+    "no-trailing-spaces": "error",
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "simple-import-sort/imports": "error",
+    "space-before-function-paren": ["error",
+      {
+        "anonymous": "never",
+        "named": "never",
+        "asyncArrow": "never"
+      }
+    ],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "error"
+  }
+}

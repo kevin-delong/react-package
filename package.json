@@ -1,33 +1,35 @@
 {
-  "name": "untilted",
+  "name": "@kevin-delong/react-package",
   "version": "0.0.0",
   "description": "",
   "keywords": [],
   "private": true,
-  "author": "your-username",
+  "author": "kevin-delong",
   "license": "MIT",
   "type": "module",
   "main": "./dist/prod/index.cjs",
   "module": "./dist/prod/index.modern.js",
-  "umd:main": "./dist/prod/index.umd.js",
   "exports": {
     "require": "./dist/prod/index.cjs",
     "development": "./dist/dev/index.modern.js",
     "default": "./dist/prod/index.modern.js"
   },
   "types": "./dist/types/index.d.ts",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "files": [
     "dist",
     "src"
   ],
   "scripts": {
-    "lint": "eslint --fix \"src/**/\"",
+    "lint": "eslint src/  --fix",
     "lint:check": "eslint \"src/**/\"",
     "lint:ci": "npm run lint:check",
     "test": "jest --verbose --coverage",
     "test:watch": "jest --watch",
     "test:ci": "jest --runInBand --ci --coverage --coverageDirectory=coverage",
-    "build:prod": "cross-env NODE_ENV=production microbundle --tsconfig ./tsconfig.json  --format modern,cjs,umd  --output dist/prod/index.js",
+    "build:prod": "cross-env NODE_ENV=production microbundle --tsconfig ./tsconfig.json  --format modern,cjs  --output dist/prod/index.js",
     "build:dev": "cross-env NODE_ENV=development microbundle --define process.env.NODE_ENV=development --tsconfig ./tsconfig.json --generateTypes false --format modern --output dist/dev/index.js",
     "build": "rm -rf ./dist && npm run build:dev && npm run build:prod",
     "gen:docs": "rm -rf ./docs/api && typedoc --options typedoc.cjs",
@@ -37,14 +39,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/your-username/untilted.git"
+    "url": "git+https://github.com/kevin-delong/react-package.git"
   },
   "bugs": {
-    "url": "https://github.com/your-username/untilted/issues"
+    "url": "https://github.com/kevin-delong/react-package/issues"
   },
-  "homepage": "https://github.com/your-username/untilted#readme",
+  "homepage": "https://github.com/kevin-delong/react-package#readme",
   "devDependencies": {
     "@babel/core": "^7.18.5",
+    "@babel/eslint-parser": "^7.13.14",
+    "@babel/eslint-plugin": "^7.13.16",
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-typescript": "^7.17.12",
     "@changesets/cli": "^2.23.0",
@@ -52,18 +56,29 @@
     "@types/node": "^17.0.42",
     "@types/react": "^18.0.27",
     "@types/uuid": "^9.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.28.0",
-    "@typescript-eslint/parser": "^5.28.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
     "babel-plugin-dev-expression": "^0.2.3",
     "babel-plugin-transform-define": "^2.0.1",
     "cross-env": "^7.0.3",
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-config-standard-react": "^11.0.1",
+    "eslint-plugin-flowtype": "^5.9.2",
+    "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-jest": "^26.5.3",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-react": "^7.25.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-tsdoc": "^0.2.16",
-    "husky": "^8.0.1",
+    "eslint-watch": "^7.0.0",
+    "husky": "^8.0.3",
     "jest": "^28.1.1",
     "jest-mock-console": "^2.0.0",
     "jest-watch-typeahead": "^1.1.0",
@@ -74,13 +89,13 @@
     "typedoc": "^0.23.0",
     "typedoc-plugin-markdown": "^3.12.1",
     "typescript": "^4.7.3",
-    "zx": "^6.2.5"
+    "zx": "^6.2.5",
+    "sass": "^1.58.0"
   },
   "dependencies": {
     "classnames": "^2.3.1",
     "react": "^17.0.2",
     "react-toastify": "^9.1.1",
-    "sass": "^1.58.0",
     "uuid": "^9.0.0"
   }
 }

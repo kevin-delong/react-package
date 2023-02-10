@@ -1,7 +1,7 @@
 import './index.scss';
 
 import classnames from 'classnames';
-import React, { ReactElement, useCallback, useState } from 'react';
+import { ReactElement, useCallback, useState } from 'react';
 
 type ITabsProps = {
   children: ReactElement[],

@@ -6,46 +6,41 @@ on:
   pull_request:
     branches:
       - main
-      - develop
 jobs:
   build:
     name: Node unit tests
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: ['12', '14', '16']
+    steps:
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Cache .pnpm-store
-        uses: actions/cache@v2
+        uses: actions/checkout@v3
+        uses: actions/setup-node@v3
         with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-node${{ matrix.node-version }}-${{ hashFiles('**/pnpm-lock.yaml') }}
-
-      - name: Setup node
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node }}
+          node-version: 12
+          registry-url: https://npm.pkg.github.com/
+          scope: "@kevin-delong"
 
       - name: Install dependencies
-        uses: pnpm/action-setup@v2.2.2
+        uses: actions/checkout@v3
+        uses: actions/setup-node@v3
         with:
           version: 6.23.6
           run_install: true
 
       - name: Lint source
         run: |
-          pnpm lint:ci
+          npm run lint:ci
+
+      - name: install dependencies
+        run: npm ci
 
       - name: Build package
         run: |
-          pnpm build
+          npm run build
 
       - name: Run tests
         run: |
-          pnpm test:ci
+          npm run test:ci
         env:
           CI: true
 
@@ -62,16 +57,15 @@ jobs:
         id: 'changesets'
         with:
           # This expects you to have a script called release which does a build for your packages and calls changeset publish
-          publish: pnpm release
+          publish: npm publish
           commit: version bump
           title: Next release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 'Generate docs'
         if: steps.changesets.outputs.published == 'true'
-        run: pnpm gen:docs
+        run: npm run gen:docs
 
       - name: Commit docs
         if: steps.changesets.outputs.published == 'true'
